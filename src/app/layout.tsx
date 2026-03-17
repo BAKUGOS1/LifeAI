@@ -4,6 +4,7 @@ import { ThemeProvider } from '@/components/ThemeProvider';
 import { ToastProvider } from '@/components/Toast';
 import Navbar from '@/components/Navbar';
 import ParticleCanvas from '@/components/ParticleCanvas';
+import Footer from '@/components/Footer';
 
 export const metadata: Metadata = {
   title: 'LifeAI — Your Intelligent Daily Life Companion',
@@ -36,6 +37,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <main className="relative z-[1] pt-[68px] min-h-screen">
               {children}
             </main>
+            <Footer />
           </ToastProvider>
         </ThemeProvider>
       </body>

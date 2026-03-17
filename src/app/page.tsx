@@ -3,14 +3,15 @@
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 import { dailyTips } from '@/lib/ai-data';
+import { BrainCircuit, CheckSquare, LineChart, Activity, Target, BarChart2, Lightbulb, ArrowRight, RefreshCw } from 'lucide-react';
 
 const features = [
-  { icon: '🤖', title: 'AI Problem Solver', desc: 'Describe any daily challenge and get intelligent, step-by-step solutions powered by real AI.', href: '/solver', cls: 'from-accent-purple/8 to-accent-violet/5' },
-  { icon: '✅', title: 'Smart Task Manager', desc: 'AI-powered prioritization that learns your habits and optimizes your schedule automatically.', href: '/tasks', cls: 'from-accent-green/8 to-accent-cyan/5' },
-  { icon: '💰', title: 'Finance Tracker', desc: 'Track expenses, set budgets, and get saving suggestions — all with AI-driven insight.', href: '/finance', cls: 'from-accent-yellow/8 to-accent-red/5' },
-  { icon: '🏃', title: 'Wellness Coach', desc: 'Personalized health tips, habit tracking, and daily wellness routines powered by AI.', href: '/wellness', cls: 'from-accent-green/8 to-accent-green/5' },
-  { icon: '🎯', title: 'Focus Mode', desc: 'Smart Pomodoro sessions with AI productivity tips and distraction analysis.', href: '/focus', cls: 'from-accent-pink/8 to-accent-violet/5' },
-  { icon: '📊', title: 'Daily Insights', desc: 'AI-generated daily reports on your productivity, spending, and wellness trends.', href: '#', cls: '', soon: true },
+  { icon: <BrainCircuit size={32} strokeWidth={1.5} />, title: 'AI Problem Solver', desc: 'Describe any daily challenge and get intelligent, step-by-step solutions powered by real AI.', href: '/solver', cls: 'from-accent-purple/8 to-accent-violet/5' },
+  { icon: <CheckSquare size={32} strokeWidth={1.5} />, title: 'Smart Task Manager', desc: 'AI-powered prioritization that learns your habits and optimizes your schedule automatically.', href: '/tasks', cls: 'from-accent-green/8 to-accent-cyan/5' },
+  { icon: <LineChart size={32} strokeWidth={1.5} />, title: 'Finance Tracker', desc: 'Track expenses, set budgets, and get saving suggestions — all with AI-driven insight.', href: '/finance', cls: 'from-accent-yellow/8 to-accent-red/5' },
+  { icon: <Activity size={32} strokeWidth={1.5} />, title: 'Wellness Coach', desc: 'Personalized health tips, habit tracking, and daily wellness routines powered by AI.', href: '/wellness', cls: 'from-accent-green/8 to-accent-green/5' },
+  { icon: <Target size={32} strokeWidth={1.5} />, title: 'Focus Mode', desc: 'Smart Pomodoro sessions with AI productivity tips and distraction analysis.', href: '/focus', cls: 'from-accent-pink/8 to-accent-violet/5' },
+  { icon: <BarChart2 size={32} strokeWidth={1.5} />, title: 'Daily Insights', desc: 'AI-generated daily reports on your productivity, spending, and wellness trends.', href: '#', cls: '', soon: true },
 ];
 
 function AnimCounter({ target }: { target: number }) {
@@ -66,18 +67,18 @@ export default function HomePage() {
       </p>
 
       {/* CTAs */}
-      <div className="flex gap-4 flex-wrap justify-center mb-16">
-        <Link href="/solver" className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl bg-gradient-to-r from-accent-purple to-accent-cyan text-white font-semibold text-base no-underline shadow-[0_8px_24px_rgba(129,140,248,0.35)] hover:translate-y-[-2px] hover:shadow-[0_12px_32px_rgba(129,140,248,0.5)] transition-all">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+      <div className="flex gap-4 flex-wrap justify-center mb-16 px-4">
+        <Link href="/solver" className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl bg-gradient-to-r from-accent-purple to-accent-cyan text-white font-semibold text-base no-underline shadow-[0_8px_24px_rgba(129,140,248,0.35)] hover:translate-y-[-2px] hover:shadow-[0_12px_32px_rgba(129,140,248,0.5)] transition-all min-w-[200px] justify-center">
+          <BrainCircuit size={20} />
           Solve a Problem
         </Link>
-        <Link href="/tasks" className="px-8 py-3.5 rounded-xl border border-border bg-bg-card text-text-primary font-medium text-base no-underline backdrop-blur-[10px] hover:border-accent-purple hover:bg-bg-card-hover hover:translate-y-[-2px] transition-all">
+        <Link href="/tasks" className="px-8 py-3.5 rounded-xl border border-border bg-bg-card text-text-primary font-medium text-base no-underline backdrop-blur-[10px] hover:border-accent-purple hover:bg-bg-card-hover hover:translate-y-[-2px] transition-all min-w-[200px]">
           Explore Features
         </Link>
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 w-full max-w-[800px] mb-16">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 w-full max-w-[800px] mb-16">
         {[{ n: 12, l: 'Problems Solved' }, { n: 5, l: 'Tools Available' }, { n: 100, l: 'AI Accuracy %' }, { n: 24, l: 'Hours / Day Coverage' }].map((s) => (
           <div key={s.l} className="bg-bg-card border border-border rounded-2xl p-6 text-center backdrop-blur-xl transition-all hover:border-border-hover hover:bg-bg-card-hover hover:translate-y-[-3px]">
             <AnimCounter target={s.n} />
@@ -87,35 +88,82 @@ export default function HomePage() {
       </div>
 
       {/* Feature Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 w-full mb-10">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 w-full mb-10">
         {features.map((f) => (
           <Link key={f.title} href={f.href}
-            className={`bg-gradient-to-br ${f.cls || 'bg-bg-card'} border border-border rounded-3xl p-7 text-left no-underline backdrop-blur-xl transition-all relative overflow-hidden group hover:border-border-hover hover:bg-bg-card-hover hover:translate-y-[-4px] hover:shadow-[0_0_40px_rgba(129,140,248,0.15)]`}>
+            className={`bg-gradient-to-br ${f.cls || 'bg-bg-card'} border border-border rounded-3xl p-7 text-left no-underline backdrop-blur-xl transition-all relative overflow-hidden group hover:border-border-hover hover:bg-bg-card-hover hover:translate-y-[-4px] hover:shadow-[0_0_40px_rgba(129,140,248,0.15)] flex flex-col h-full`}>
             <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-accent-purple to-accent-cyan opacity-0 group-hover:opacity-100 transition-all" />
-            <div className="text-4xl mb-4">{f.icon}</div>
-            <h3 className="font-display text-base font-bold mb-2.5 text-text-primary">{f.title}</h3>
-            <p className="text-sm text-text-secondary leading-relaxed mb-4">{f.desc}</p>
-            {f.soon ? (
-              <span className="bg-accent-yellow/15 text-accent-yellow border border-accent-yellow/30 px-2.5 py-1 rounded-full text-xs font-medium">Soon</span>
-            ) : (
-              <span className="text-sm font-semibold text-accent-purple group-hover:translate-x-1 transition-transform inline-block">→</span>
-            )}
+            <div className="text-accent-purple mb-5 p-3 bg-white/5 inline-flex rounded-2xl w-fit self-start">{f.icon}</div>
+            <h3 className="font-display text-lg font-bold mb-2.5 text-text-primary">{f.title}</h3>
+            <p className="text-sm text-text-secondary leading-relaxed mb-6 flex-1">{f.desc}</p>
+            <div className="mt-auto">
+              {f.soon ? (
+                <span className="bg-accent-yellow/15 text-accent-yellow border border-accent-yellow/30 px-3 py-1.5 rounded-full text-xs font-medium">Coming Soon</span>
+              ) : (
+                <span className="text-sm font-semibold text-accent-cyan flex items-center gap-1 group-hover:gap-2 transition-all">Explore <ArrowRight size={16} /></span>
+              )}
+            </div>
           </Link>
         ))}
       </div>
 
       {/* Daily Tip */}
-      <div className="flex items-center gap-4 bg-gradient-to-br from-accent-purple/10 to-accent-cyan/5 border border-accent-purple/20 rounded-3xl p-6 w-full backdrop-blur-xl">
-        <div className="text-3xl shrink-0">💡</div>
-        <div className="flex-1 text-left">
-          <p className="text-base leading-relaxed text-text-primary mb-1.5 transition-opacity duration-200">{dailyTips[tipIndex]}</p>
-          <span className="text-xs text-accent-purple font-semibold">Daily AI Insight</span>
+      <div className="flex flex-col md:flex-row items-start md:items-center gap-5 md:gap-6 bg-gradient-to-br from-accent-purple/10 to-accent-cyan/5 border border-accent-purple/20 rounded-3xl p-6 md:p-8 w-full backdrop-blur-xl text-left relative overflow-hidden">
+        <div className="absolute top-0 right-0 p-30 bg-accent-purple/10 rounded-full blur-[80px] -z-10" />
+        <div className="bg-accent-purple/20 p-4 rounded-2xl text-accent-purple shrink-0">
+          <Lightbulb size={28} />
+        </div>
+        <div className="flex-1">
+          <p className="text-base md:text-lg leading-relaxed text-text-primary mb-2 transition-opacity duration-200 font-medium">{dailyTips[tipIndex]}</p>
+          <span className="text-xs md:text-sm text-accent-purple font-semibold tracking-wide uppercase">Daily AI Insight</span>
         </div>
         <button onClick={refreshTip} title="New tip"
-          className="bg-accent-purple/10 border border-accent-purple/30 text-accent-purple w-10 h-10 rounded-[10px] flex items-center justify-center text-lg cursor-pointer shrink-0 transition-all hover:bg-accent-purple/20 hover:rotate-180">
-          ↻
+          className="bg-bg-card/50 border border-border hover:border-accent-purple/50 text-text-secondary hover:text-accent-purple w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 transition-all hover:bg-accent-purple/10 active:scale-95 group">
+          <RefreshCw size={20} className="group-hover:rotate-180 transition-transform duration-500" />
         </button>
       </div>
+
+      {/* AI Evolution Photography Section */}
+      <div className="w-full mt-32 mb-10 text-center">
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-border bg-bg-card/50 text-xs font-medium text-text-secondary mb-6">
+          <span className="w-2 h-2 rounded-full bg-accent-cyan"></span> Virtual Gallery
+        </div>
+        <h2 className="font-display text-3xl md:text-5xl font-extrabold mb-6">The Evolution of <span className="gradient-text">AI</span></h2>
+        <p className="text-text-secondary text-base md:text-lg max-w-[700px] mx-auto mb-16">
+          Witness the journey of artificial intelligence from conceptual algorithms to a daily life companion that empowers human potential.
+        </p>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
+          {/* Item 1 */}
+          <div className="group relative rounded-[2rem] overflow-hidden aspect-[4/3] md:aspect-[4/5] bg-bg-card border border-border transition-all hover:border-accent-purple/50">
+            <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&q=80&w=800" alt="Neural Networks" className="w-full h-full object-cover transition-transform duration-[1.5s] group-hover:scale-110 opacity-70 group-hover:opacity-100" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/60 to-transparent flex flex-col justify-end p-8 text-left transition-opacity duration-300">
+              <span className="text-accent-cyan text-xs font-bold tracking-widest uppercase mb-2">Phase 01</span>
+              <h3 className="text-white font-display font-bold text-2xl mb-3 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">Neural Connectomics</h3>
+              <p className="text-white/80 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100 leading-relaxed max-w-[90%]">The intricate patterns mimicking human brain architecture, forming the foundation of deep learning.</p>
+            </div>
+          </div>
+          {/* Item 2 */}
+          <div className="group relative rounded-[2rem] overflow-hidden aspect-[4/3] md:aspect-[4/5] bg-bg-card border border-border lg:translate-y-12 transition-all hover:border-accent-cyan/50">
+            <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=800" alt="Generative AI" className="w-full h-full object-cover transition-transform duration-[1.5s] group-hover:scale-110 opacity-70 group-hover:opacity-100" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/60 to-transparent flex flex-col justify-end p-8 text-left transition-opacity duration-300">
+              <span className="text-accent-purple text-xs font-bold tracking-widest uppercase mb-2">Phase 02</span>
+              <h3 className="text-white font-display font-bold text-2xl mb-3 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">Generative Mastery</h3>
+              <p className="text-white/80 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100 leading-relaxed max-w-[90%]">Machines learning to dream, create, and understand complex human semantics in real-time.</p>
+            </div>
+          </div>
+          {/* Item 3 */}
+          <div className="group relative rounded-[2rem] overflow-hidden aspect-[4/3] md:aspect-[4/5] bg-bg-card border border-border md:col-span-2 lg:col-span-1 lg:mt-0 transition-all hover:border-accent-green/50">
+            <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=800" alt="Symbiosis" className="w-full h-full object-cover transition-transform duration-[1.5s] group-hover:scale-110 opacity-70 group-hover:opacity-100" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/60 to-transparent flex flex-col justify-end p-8 text-left transition-opacity duration-300">
+              <span className="text-accent-green text-xs font-bold tracking-widest uppercase mb-2">Phase 03</span>
+              <h3 className="text-white font-display font-bold text-2xl mb-3 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">Human By Design</h3>
+              <p className="text-white/80 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100 leading-relaxed max-w-[90%]">The seamless integration into modern life, augmenting our reasoning and enhancing daily productivity.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
     </div>
   );
 }
