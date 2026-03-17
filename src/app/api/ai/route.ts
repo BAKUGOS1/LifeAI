@@ -1,10 +1,14 @@
 import Groq from 'groq-sdk';
 import { NextRequest, NextResponse } from 'next/server';
 
-const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
-
 export async function POST(req: NextRequest) {
   try {
+    const apiKey = process.env.GROQ_API_KEY;
+    if (!apiKey) {
+      console.warn('GROQ_API_KEY is missing');
+    }
+    const groq = new Groq({ apiKey: apiKey || 'dummy-key-for-build' });
+    
     const { problem, category } = await req.json();
 
     if (!problem || typeof problem !== 'string') {
