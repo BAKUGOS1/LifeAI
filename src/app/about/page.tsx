@@ -18,7 +18,7 @@ export default function AboutPage() {
           <span className="gradient-text">Future of Living</span>
         </h1>
         <p className="text-text-secondary text-base md:text-xl max-w-[700px] mx-auto leading-relaxed">
-          LifeAI was founded on a simple principle: Artificial Intelligence shouldn't just be for coders and data scientists. It should be a daily companion that empowers everyone to do more, live better, and think clearer.
+          LifeAI was founded on a simple principle: Artificial Intelligence shouldn&apos;t just be for coders and data scientists. It should be a daily companion that empowers everyone to do more, live better, and think clearer.
         </p>
       </div>
 

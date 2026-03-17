@@ -42,7 +42,10 @@ export default function HomePage() {
   const [tipIndex, setTipIndex] = useState(0);
 
   useEffect(() => {
-    setTipIndex(Math.floor(Math.random() * dailyTips.length));
+    const t = setTimeout(() => {
+      setTipIndex(Math.floor(Math.random() * dailyTips.length));
+    }, 0);
+    return () => clearTimeout(t);
   }, []);
 
   const refreshTip = () => setTipIndex((i) => (i + 1) % dailyTips.length);

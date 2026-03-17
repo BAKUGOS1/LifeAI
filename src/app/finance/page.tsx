@@ -19,8 +19,10 @@ export default function FinancePage() {
   useEffect(() => {
     const t = localStorage.getItem('lifeai_transactions');
     const b = localStorage.getItem('lifeai_budget');
-    if (t) setTx(JSON.parse(t));
-    if (b) setBudget(parseFloat(b));
+    setTimeout(() => {
+      if (t) setTx(JSON.parse(t));
+      if (b) setBudget(parseFloat(b));
+    }, 0);
   }, []);
 
   const saveTx = useCallback((t: Transaction[]) => { setTx(t); localStorage.setItem('lifeai_transactions', JSON.stringify(t)); }, []);

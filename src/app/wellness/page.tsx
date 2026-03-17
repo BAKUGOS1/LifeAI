@@ -25,8 +25,10 @@ export default function WellnessPage() {
   useEffect(() => {
     const h = localStorage.getItem('lifeai_health');
     const hb = localStorage.getItem('lifeai_habits');
-    if (h) setHealth(JSON.parse(h));
-    if (hb) setHabits(JSON.parse(hb));
+    setTimeout(() => {
+      if (h) setHealth(JSON.parse(h));
+      if (hb) setHabits(JSON.parse(hb));
+    }, 0);
   }, []);
 
   const saveHealth = useCallback((h: Health) => { setHealth(h); localStorage.setItem('lifeai_health', JSON.stringify(h)); }, []);

@@ -11,10 +11,14 @@ export default function TasksPage() {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [input, setInput] = useState('');
   const [priority, setPriority] = useState('medium');
+  const [suggestion, setSuggestion] = useState('');
 
   useEffect(() => {
     const saved = localStorage.getItem('lifeai_tasks');
-    if (saved) setTasks(JSON.parse(saved));
+    setTimeout(() => {
+      if (saved) setTasks(JSON.parse(saved));
+      setSuggestion(aiTaskSuggestions[Math.floor(Math.random() * aiTaskSuggestions.length)]);
+    }, 0);
   }, []);
 
   const save = useCallback((t: Task[]) => { setTasks(t); localStorage.setItem('lifeai_tasks', JSON.stringify(t)); }, []);
@@ -32,9 +36,9 @@ export default function TasksPage() {
 
   const cols = { high: tasks.filter(t => !t.done && t.priority === 'high'), medium: tasks.filter(t => !t.done && t.priority === 'medium'), low: tasks.filter(t => !t.done && t.priority === 'low'), done: tasks.filter(t => t.done) };
 
-  const suggestion = tasks.length === 0 ? 'Add your first task and I\'ll help you prioritize!' :
+  const currentSuggestion = tasks.length === 0 ? 'Add your first task and I\'ll help you prioritize!' :
     cols.done.length === tasks.length ? '🎉 All tasks complete! You crushed it today!' :
-    aiTaskSuggestions[Math.floor(Math.random() * aiTaskSuggestions.length)];
+    (suggestion || aiTaskSuggestions[0]);
 
   const colConfig = [
     { key: 'high' as const, label: 'High Priority', dot: 'bg-accent-red shadow-[0_0_8px_var(--color-accent-red)]', items: cols.high },
@@ -66,7 +70,7 @@ export default function TasksPage() {
 
       {/* AI Suggestion */}
       <div className="bg-accent-purple/6 border border-accent-purple/20 rounded-xl px-4 py-3 flex items-center gap-2.5 mb-7 text-sm text-text-secondary">
-        <span className="text-base">🤖</span> {suggestion}
+        <span className="text-base">🤖</span> {currentSuggestion}
       </div>
 
       {/* Kanban Board */}

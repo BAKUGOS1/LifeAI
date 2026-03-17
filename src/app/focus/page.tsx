@@ -21,8 +21,10 @@ export default function FocusPage() {
   useEffect(() => {
     const s = localStorage.getItem('lifeai_sessions');
     const f = localStorage.getItem('lifeai_focusTime');
-    if (s) setSessions(parseInt(s));
-    if (f) setFocusTime(parseInt(f));
+    setTimeout(() => {
+      if (s) setSessions(parseInt(s));
+      if (f) setFocusTime(parseInt(f));
+    }, 0);
   }, []);
 
   const onComplete = useCallback(() => {

@@ -18,7 +18,9 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     const saved = localStorage.getItem('lifeai-theme') as Theme | null;
-    if (saved) { setTheme(saved); document.documentElement.setAttribute('data-theme', saved); }
+    setTimeout(() => {
+      if (saved) { setTheme(saved); document.documentElement.setAttribute('data-theme', saved); }
+    }, 0);
   }, []);
 
   const toggle = () => {
