@@ -25,6 +25,7 @@
 /* ═══ ROOT DARK (DEFAULT) ═══ */
 :root {
   --bg: #05071a;
+  --bg-main: #05071a;
   --bg-secondary: #0d1030;
   --bg-card: rgba(255,255,255,0.04);
   --bg-card-hover: rgba(255,255,255,0.08);
@@ -39,6 +40,7 @@
 /* ═══ LIGHT MODE ═══ */
 [data-theme="light"] {
   --bg: #f0f4ff;
+  --bg-main: #f0f4ff;
   --bg-secondary: #e8eeff;
   --bg-card: rgba(255,255,255,0.7);
   --bg-card-hover: rgba(255,255,255,0.9);
@@ -85,7 +87,14 @@ body {
   position: absolute; border-radius: 50%;
   filter: blur(80px); opacity: 0.12;
   animation: orbFloat 12s ease-in-out infinite alternate;
+  will-change: transform;
 }
+@media (prefers-reduced-motion: reduce) {
+  .orb { animation: none; }
+}
+/* ═══ SCROLLBAR NONE ═══ */
+.scrollbar-none { scrollbar-width: none; }
+.scrollbar-none::-webkit-scrollbar { display: none; }
 
 /* ═══ BADGE PULSE ═══ */
 @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.4)} }

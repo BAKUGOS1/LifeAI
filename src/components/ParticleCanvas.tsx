@@ -8,8 +8,12 @@ export default function ParticleCanvas() {
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext('2d', { willReadFrequently: false });
     if (!ctx) return;
+
+    // Respect reduced-motion preference
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reducedMotion) return;
 
     let W = (canvas.width = window.innerWidth);
     let H = (canvas.height = window.innerHeight);
@@ -21,7 +25,9 @@ export default function ParticleCanvas() {
     };
     window.addEventListener('resize', handleResize);
 
-    const particles = Array.from({ length: 80 }, () => ({
+    // Fewer particles on mobile for better performance
+    const count = window.innerWidth < 768 ? 40 : 70;
+    const particles = Array.from({ length: count }, () => ({
       x: Math.random() * W, y: Math.random() * H,
       r: Math.random() * 1.5 + 0.5,
       vx: (Math.random() - 0.5) * 0.3,

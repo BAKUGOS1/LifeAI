@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 import { dailyTips } from '@/lib/ai-data';
@@ -112,7 +113,7 @@ export default function HomePage() {
 
       {/* Daily Tip */}
       <div className="flex flex-col md:flex-row items-start md:items-center gap-5 md:gap-6 bg-gradient-to-br from-accent-purple/10 to-accent-cyan/5 border border-accent-purple/20 rounded-3xl p-6 md:p-8 w-full backdrop-blur-xl text-left relative overflow-hidden">
-        <div className="absolute top-0 right-0 p-30 bg-accent-purple/10 rounded-full blur-[80px] -z-10" />
+        <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-accent-purple/10 rounded-full blur-[80px] -z-10 pointer-events-none" />
         <div className="bg-accent-purple/20 p-4 rounded-2xl text-accent-purple shrink-0">
           <Lightbulb size={28} />
         </div>
@@ -139,7 +140,7 @@ export default function HomePage() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
           {/* Item 1 */}
           <div className="group relative rounded-[2rem] overflow-hidden aspect-[4/3] md:aspect-[4/5] bg-bg-card border border-border transition-all hover:border-accent-purple/50">
-            <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&q=80&w=800" alt="Neural Networks" className="w-full h-full object-cover transition-transform duration-[1.5s] group-hover:scale-110 opacity-70 group-hover:opacity-100" />
+            <Image src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&q=80&w=800" alt="Neural Networks" fill sizes="(max-width:768px) 100vw, (max-width:1024px) 50vw, 33vw" className="object-cover transition-transform duration-[1.5s] group-hover:scale-110 opacity-70 group-hover:opacity-100" />
             <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/60 to-transparent flex flex-col justify-end p-8 text-left transition-opacity duration-300">
               <span className="text-accent-cyan text-xs font-bold tracking-widest uppercase mb-2">Phase 01</span>
               <h3 className="text-white font-display font-bold text-2xl mb-3 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">Neural Connectomics</h3>
@@ -147,8 +148,8 @@ export default function HomePage() {
             </div>
           </div>
           {/* Item 2 */}
-          <div className="group relative rounded-[2rem] overflow-hidden aspect-[4/3] md:aspect-[4/5] bg-bg-card border border-border lg:translate-y-12 transition-all hover:border-accent-cyan/50">
-            <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=800" alt="Generative AI" className="w-full h-full object-cover transition-transform duration-[1.5s] group-hover:scale-110 opacity-70 group-hover:opacity-100" />
+          <div className="group relative rounded-[2rem] overflow-hidden aspect-[4/3] md:aspect-[4/5] bg-bg-card border border-border transition-all hover:border-accent-cyan/50">
+            <Image src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=800" alt="Generative AI" fill sizes="(max-width:768px) 100vw, (max-width:1024px) 50vw, 33vw" className="object-cover transition-transform duration-[1.5s] group-hover:scale-110 opacity-70 group-hover:opacity-100" />
             <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/60 to-transparent flex flex-col justify-end p-8 text-left transition-opacity duration-300">
               <span className="text-accent-purple text-xs font-bold tracking-widest uppercase mb-2">Phase 02</span>
               <h3 className="text-white font-display font-bold text-2xl mb-3 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">Generative Mastery</h3>
@@ -156,8 +157,8 @@ export default function HomePage() {
             </div>
           </div>
           {/* Item 3 */}
-          <div className="group relative rounded-[2rem] overflow-hidden aspect-[4/3] md:aspect-[4/5] bg-bg-card border border-border md:col-span-2 lg:col-span-1 lg:mt-0 transition-all hover:border-accent-green/50">
-            <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=800" alt="Symbiosis" className="w-full h-full object-cover transition-transform duration-[1.5s] group-hover:scale-110 opacity-70 group-hover:opacity-100" />
+          <div className="group relative rounded-[2rem] overflow-hidden aspect-[4/3] md:aspect-[4/5] bg-bg-card border border-border md:col-span-2 lg:col-span-1 transition-all hover:border-accent-green/50">
+            <Image src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=800" alt="Symbiosis" fill sizes="(max-width:768px) 100vw, (max-width:1024px) 100vw, 33vw" className="object-cover transition-transform duration-[1.5s] group-hover:scale-110 opacity-70 group-hover:opacity-100" />
             <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/60 to-transparent flex flex-col justify-end p-8 text-left transition-opacity duration-300">
               <span className="text-accent-green text-xs font-bold tracking-widest uppercase mb-2">Phase 03</span>
               <h3 className="text-white font-display font-bold text-2xl mb-3 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">Human By Design</h3>

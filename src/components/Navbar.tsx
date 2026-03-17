@@ -42,7 +42,7 @@ export default function Navbar() {
         </Link>
 
         {/* Desktop Tabs */}
-        <div className="hidden md:flex gap-1 flex-1 overflow-x-auto">
+        <div className="hidden md:flex gap-1 flex-1 overflow-x-auto scrollbar-none">
           {tabs.map((t) => (
             <Link key={t.id} href={t.path}
               className={`px-4 py-2 rounded-lg text-sm font-medium no-underline whitespace-nowrap transition-all duration-200
